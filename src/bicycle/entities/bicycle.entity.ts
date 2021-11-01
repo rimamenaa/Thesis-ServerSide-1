@@ -4,9 +4,9 @@ export class Bicycle {
   @PrimaryGeneratedColumn()
   id: Number;
   @Column()
-  name: string;
-  @Column()
-  station: string;
+  category: string;
   @Column()
   description: string;
+  @Column()
+  photo: string;
 }
