@@ -10,9 +10,12 @@ import { Admin } from './admin/entities/admin.entity';
 import { User } from './user/entities/user.entity';
 import { Station } from './station/entities/station.entity';
 import { Bicycle } from './bicycle/entities/bicycle.entity';
+import { ConfigModule } from '@nestjs/config';
+import { AuthorisationModule } from './authorisation/authorisation.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -27,6 +30,7 @@ import { Bicycle } from './bicycle/entities/bicycle.entity';
     AdminModule,
     BicycleModule,
     StationModule,
+    AuthorisationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
