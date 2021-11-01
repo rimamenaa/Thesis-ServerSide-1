@@ -13,6 +13,7 @@ import { Bicycle } from './bicycle/entities/bicycle.entity';
 
 @Module({
   imports: [
+    
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
