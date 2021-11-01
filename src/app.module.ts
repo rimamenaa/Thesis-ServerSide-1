@@ -10,17 +10,19 @@ import { Admin } from './admin/entities/admin.entity';
 import { User } from './user/entities/user.entity';
 import { Station } from './station/entities/station.entity';
 import { Bicycle } from './bicycle/entities/bicycle.entity';
+import { ConfigModule } from '@nestjs/config';
+import { AuthorisationModule } from './authorisation/authorisation.module';
 
 @Module({
   imports: [
-    
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
       port: 3306,
-      username: 'root',
-      password: 'Greatness@103',
-      database: 'test',
+      username: process.env.DATABASE_USERNAME,
+      password: process.env.DATABASE_PASSWORD,
+      database: process.env.DATABASE_NAME,
       entities: [Admin, User, Station, Bicycle],
       synchronize: true,
     }),
@@ -28,6 +30,7 @@ import { Bicycle } from './bicycle/entities/bicycle.entity';
     AdminModule,
     BicycleModule,
     StationModule,
+    AuthorisationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
