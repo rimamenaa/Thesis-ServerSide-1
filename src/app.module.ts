@@ -6,6 +6,8 @@ import { UserModule } from './user/user.module';
 import { User } from './user/entities/user.entity';
 import { MongooseModule } from '@nestjs/mongoose';
 import { BicycleModule } from './bicycle/bicycle.module';
+import { AdminModule } from './admin/admin.module';
+import { StationModule } from './station/station.module';
 
 @Module({
   imports: [
@@ -22,6 +24,8 @@ import { BicycleModule } from './bicycle/bicycle.module';
     }),
     UserModule,
     BicycleModule,
+    AdminModule,
+    StationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
