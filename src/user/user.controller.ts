@@ -17,7 +17,6 @@ export class UserController {
 
   @Get()
   async index() {
-    console.log('str');
     return await this.service.findAll();
   }
 
