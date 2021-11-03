@@ -6,8 +6,12 @@ import { UserModule } from './user/user.module';
 import { User } from './user/entities/user.entity';
 import { MongooseModule } from '@nestjs/mongoose';
 import { BicycleModule } from './bicycle/bicycle.module';
+
+import { WhybycycleModule } from './whybycycle/whybycycle.module';
+
 import { AdminModule } from './admin/admin.module';
 import { StationModule } from './station/station.module';
+
 
 @Module({
   imports: [
@@ -24,8 +28,12 @@ import { StationModule } from './station/station.module';
     }),
     UserModule,
     BicycleModule,
+
+    WhybycycleModule,
+
     AdminModule,
     StationModule,
+
   ],
   controllers: [AppController],
   providers: [AppService],
