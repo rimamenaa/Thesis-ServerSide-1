@@ -1,5 +1,3 @@
-export class CreateStationDto {
-  name: string;
-  location: string;
-  numberOfBicycles: Number;
-}
+import { BaseStationDto } from './base-station.dto';
+
+export class CreateStationDto extends BaseStationDto {}
