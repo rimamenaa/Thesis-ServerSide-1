@@ -1,26 +1,42 @@
 import { Injectable } from '@nestjs/common';
-import { CreateSuggestionDto } from './dto/create-suggestion.dto';
-import { UpdateSuggestionDto } from './dto/update-suggestion.dto';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { CreateSuggestionsDto } from './dto/create-suggestion.dto';
+import { UpdateSuggestionsDto } from './dto/update-suggestion.dto';
+import { Suggestions, SuggestionsDocument } from './entities/suggestion.entity';
 
 @Injectable()
 export class SuggestionsService {
-  create(createSuggestionDto: CreateSuggestionDto) {
-    return 'This action adds a new suggestion';
+  constructor(
+    @InjectModel(Suggestions.name)
+    private readonly model: Model<SuggestionsDocument>,
+  ) {}
+
+  async findAll(): Promise<Suggestions[]> {
+    return await this.model.find().exec();
   }
 
-  findAll() {
-    return `This action returns all suggestions`;
+  async findOne(id: string): Promise<Suggestions> {
+    return await this.model.findById(id).exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} suggestion`;
+  async create(
+    createSuggestionsDto: CreateSuggestionsDto,
+  ): Promise<Suggestions> {
+    return await new this.model({
+      ...createSuggestionsDto,
+      createdAt: new Date(),
+    }).save();
   }
 
-  update(id: number, updateSuggestionDto: UpdateSuggestionDto) {
-    return `This action updates a #${id} suggestion`;
+  async update(
+    id: string,
+    updateSuggestionsDto: UpdateSuggestionsDto,
+  ): Promise<Suggestions> {
+    return await this.model.findByIdAndUpdate(id, updateSuggestionsDto).exec();
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} suggestion`;
+  async delete(id: string): Promise<Suggestions> {
+    return await this.model.findByIdAndDelete(id).exec();
   }
 }

@@ -6,6 +6,9 @@ import { UserModule } from './user/user.module';
 import { User } from './user/entities/user.entity';
 import { MongooseModule } from '@nestjs/mongoose';
 import { BicycleModule } from './bicycle/bicycle.module';
+
+import { WhybycycleModule } from './whybycycle/whybycycle.module';
+
 import { AdminModule } from './admin/admin.module';
 import { StationModule } from './station/station.module';
 import { SuggestionsModule } from './suggestions/suggestions.module';
@@ -25,6 +28,9 @@ import { SuggestionsModule } from './suggestions/suggestions.module';
     }),
     UserModule,
     BicycleModule,
+
+    WhybycycleModule,
+
     AdminModule,
     StationModule,
     SuggestionsModule,

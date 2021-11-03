@@ -1,4 +1,5 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateSuggestionDto } from './create-suggestion.dto';
+import { BaseSuggestionsDto } from './base-suggestions.dto';
 
-export class UpdateSuggestionDto extends PartialType(CreateSuggestionDto) {}
+export class UpdateSuggestionsDto extends BaseSuggestionsDto {
+  updatedAt: Date;
+}

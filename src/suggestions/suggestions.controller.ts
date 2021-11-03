@@ -1,34 +1,45 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
+import { CreateSuggestionsDto } from './dto/create-suggestion.dto';
+import { UpdateSuggestionsDto } from './dto/update-suggestion.dto';
 import { SuggestionsService } from './suggestions.service';
-import { CreateSuggestionDto } from './dto/create-suggestion.dto';
-import { UpdateSuggestionDto } from './dto/update-suggestion.dto';
 
-@Controller('suggestions')
+@Controller('suggestion')
 export class SuggestionsController {
-  constructor(private readonly suggestionsService: SuggestionsService) {}
-
-  @Post()
-  create(@Body() createSuggestionDto: CreateSuggestionDto) {
-    return this.suggestionsService.create(createSuggestionDto);
-  }
+  constructor(private readonly service: SuggestionsService) {}
 
   @Get()
-  findAll() {
-    return this.suggestionsService.findAll();
+  async index() {
+    return await this.service.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.suggestionsService.findOne(+id);
+  async find(@Param('id') id: string) {
+    return await this.service.findOne(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateSuggestionDto: UpdateSuggestionDto) {
-    return this.suggestionsService.update(+id, updateSuggestionDto);
+  @Post()
+  async create(@Body() suggestion: CreateSuggestionsDto) {
+    return await this.service.create(suggestion);
+  }
+
+  @Put(':id')
+  async update(
+    @Param('id') id: string,
+    @Body() updateSuggestionsDto: UpdateSuggestionsDto,
+  ) {
+    return await this.service.update(id, updateSuggestionsDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.suggestionsService.remove(+id);
+  async delete(@Param('id') id: string) {
+    return await this.service.delete(id);
   }
 }
