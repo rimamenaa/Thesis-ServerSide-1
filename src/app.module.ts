@@ -11,6 +11,7 @@ import { WhybycycleModule } from './whybycycle/whybycycle.module';
 
 import { AdminModule } from './admin/admin.module';
 import { StationModule } from './station/station.module';
+import { SuggestionsModule } from './suggestions/suggestions.module';
 
 
 @Module({
@@ -33,7 +34,7 @@ import { StationModule } from './station/station.module';
 
     AdminModule,
     StationModule,
-
+    SuggestionsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
