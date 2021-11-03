@@ -8,6 +8,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { BicycleModule } from './bicycle/bicycle.module';
 import { AdminModule } from './admin/admin.module';
 import { StationModule } from './station/station.module';
+import { SuggestionsModule } from './suggestions/suggestions.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { StationModule } from './station/station.module';
     BicycleModule,
     AdminModule,
     StationModule,
+    SuggestionsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
