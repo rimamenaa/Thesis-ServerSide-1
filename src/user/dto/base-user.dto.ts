@@ -1,4 +1,4 @@
-export class CreateAdminDto {
+export class BaseUserDto {
   username: string;
   email: string;
   password: string;

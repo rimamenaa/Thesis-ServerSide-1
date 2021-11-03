@@ -1,36 +1,29 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
-import { AdminModule } from './admin/admin.module';
-import { BicycleModule } from './bicycle/bicycle.module';
-import { StationModule } from './station/station.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { Admin } from './admin/entities/admin.entity';
 import { User } from './user/entities/user.entity';
-import { Station } from './station/entities/station.entity';
-import { Bicycle } from './bicycle/entities/bicycle.entity';
-import { ConfigModule } from '@nestjs/config';
-import { AuthorisationModule } from './authorisation/authorisation.module';
+import { MongooseModule } from '@nestjs/mongoose';
+import { BicycleModule } from './bicycle/bicycle.module';
+import { WhybycycleModule } from './whybycycle/whybycycle.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    MongooseModule.forRoot(
+      'mongodb+srv://Wissem:brinis@brinisdatabase.gedvh.mongodb.net/bycycle?retryWrites=true&w=majority',
+    ),
     TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'Greatness@103',
-      database: 'test',
-      entities: [Admin, User, Station, Bicycle],
+      type: 'mongodb',
+      url: 'mongodb+srv://Wissem:brinis@brinisdatabase.gedvh.mongodb.net/bycycle?retryWrites=true&w=majority',
+      useNewUrlParser: true,
       synchronize: true,
+      logging: true,
+      entities: [User],
     }),
     UserModule,
-    AdminModule,
     BicycleModule,
-    StationModule,
-    AuthorisationModule,
+    WhybycycleModule,
   ],
   controllers: [AppController],
   providers: [AppService],

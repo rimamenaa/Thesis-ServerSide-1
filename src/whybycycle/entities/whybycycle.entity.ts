@@ -1,21 +1,22 @@
+
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-export type UserDocument = User & Document;
+export type WhybycycleDocument =Whybycycle & Document;
 
 @Schema()
-export class User {
+export class Whybycycle {
   @Prop({ required: true })
-  username: string;
+  title: string;
 
   @Prop({ required: true })
-  email: string;
+  description: string;
 
   @Prop({ required: true })
-  password: string;
+  photo: string;
 
   @Prop({ required: true })
   createdAt: Date;
 }
 
-export const UserSchema = SchemaFactory.createForClass(User);
+export const WhybycycleSchema = SchemaFactory.createForClass(Whybycycle);
