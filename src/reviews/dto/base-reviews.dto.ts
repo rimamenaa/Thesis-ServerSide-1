@@ -1,5 +1,5 @@
 export class BaseReviewsDto {
-  trip: string;
+  place: string;
   rating: number;
   review: string;
   createdAt: Date;
