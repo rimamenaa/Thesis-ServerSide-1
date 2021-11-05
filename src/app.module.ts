@@ -21,7 +21,7 @@ import { ReviewsModule } from './reviews/reviews.module';
     ),
     TypeOrmModule.forRoot({
       type: 'mongodb',
-      url: 'mongodb+srv://Wissem:brinis@brinisdatabase.gedvh.mongodb.net/bycycle?retryWrites=true&w=majority',
+      url: process.env.MongoUrl,
       useNewUrlParser: true,
       synchronize: true,
       logging: true,
