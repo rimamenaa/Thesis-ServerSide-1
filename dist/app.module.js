@@ -19,6 +19,7 @@ const whybycycle_module_1 = require("./whybycycle/whybycycle.module");
 const admin_module_1 = require("./admin/admin.module");
 const station_module_1 = require("./station/station.module");
 const suggestions_module_1 = require("./suggestions/suggestions.module");
+const reviews_module_1 = require("./reviews/reviews.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -39,6 +40,7 @@ AppModule = __decorate([
             admin_module_1.AdminModule,
             station_module_1.StationModule,
             suggestions_module_1.SuggestionsModule,
+            reviews_module_1.ReviewsModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
