@@ -1,8 +1,5 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateStationDto } from './create-station.dto';
+import { BaseStationDto } from './base-station.dto';
 
-export class UpdateStationDto extends PartialType(CreateStationDto) {
-  name: string;
-  location: string;
-  numberOfBicycles: Number;
+export class UpdateStationDto extends BaseStationDto {
+  updatedAt: Date;
 }

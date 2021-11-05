@@ -1,33 +1,36 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import { CreateAdminDto } from './dto/create-admin.dto';
 import { UpdateAdminDto } from './dto/update-admin.dto';
-import { Admin } from './entities/admin.entity';
+import { Admin, AdminDocument } from './entities/admin.entity';
 
 @Injectable()
 export class AdminService {
   constructor(
-    @InjectRepository(Admin)
-    private admin: Repository<Admin>,
+    @InjectModel(Admin.name) private readonly model: Model<AdminDocument>,
   ) {}
-  create(createAdminDto: CreateAdminDto) {
-    return this.admin.save(createAdminDto);
+
+  async findAll(): Promise<Admin[]> {
+    return await this.model.find().exec();
   }
 
-  findAll() {
-    return this.admin.find();
+  async findOne(id: string): Promise<Admin> {
+    return await this.model.findById(id).exec();
   }
 
-  findOne(id: number) {
-    return this.admin.findOne(id);
+  async create(createAdminDto: CreateAdminDto): Promise<Admin> {
+    return await new this.model({
+      ...createAdminDto,
+      createdAt: new Date(),
+    }).save();
   }
 
-  update(id: number, updateAdminDto: UpdateAdminDto) {
-    return this.admin.update(id, updateAdminDto);
+  async update(id: string, updateAdminDto: UpdateAdminDto): Promise<Admin> {
+    return await this.model.findByIdAndUpdate(id, updateAdminDto).exec();
   }
 
-  remove(id: number) {
-    return this.admin.delete(id);
+  async delete(id: string): Promise<Admin> {
+    return await this.model.findByIdAndDelete(id).exec();
   }
 }

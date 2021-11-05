@@ -1,33 +1,39 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import { CreateBicycleDto } from './dto/create-bicycle.dto';
 import { UpdateBicycleDto } from './dto/update-bicycle.dto';
-import { Bicycle } from './entities/bicycle.entity';
+import { Bicycle, BicycleDocument } from './entities/bicycle.entity';
 
 @Injectable()
 export class BicycleService {
   constructor(
-    @InjectRepository(Bicycle)
-    private bicycle: Repository<Bicycle>,
+    @InjectModel(Bicycle.name) private readonly model: Model<BicycleDocument>,
   ) {}
-  create(createBicycleDto: CreateBicycleDto) {
-    return this.bicycle.save(createBicycleDto);
+
+  async findAll(): Promise<Bicycle[]> {
+    return await this.model.find().exec();
   }
 
-  findAll() {
-    return this.bicycle.find();
+  async findOne(id: string): Promise<Bicycle> {
+    return await this.model.findById(id).exec();
   }
 
-  findOne(id: number) {
-    return this.bicycle.findOne(id);
+  async create(createBicycleDto: CreateBicycleDto): Promise<Bicycle> {
+    return await new this.model({
+      ...createBicycleDto,
+      createdAt: new Date(),
+    }).save();
   }
 
-  update(id: number, updateBicycleDto: UpdateBicycleDto) {
-    return this.bicycle.update(id, updateBicycleDto);
+  async update(
+    id: string,
+    updateBicycleDto: UpdateBicycleDto,
+  ): Promise<Bicycle> {
+    return await this.model.findByIdAndUpdate(id, updateBicycleDto).exec();
   }
 
-  remove(id: number) {
-    return this.bicycle.delete(id);
+  async delete(id: string): Promise<Bicycle> {
+    return await this.model.findByIdAndDelete(id).exec();
   }
 }
