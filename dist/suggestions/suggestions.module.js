@@ -19,7 +19,9 @@ SuggestionsModule = __decorate([
         providers: [suggestions_service_1.SuggestionsService],
         controllers: [suggestions_controller_1.SuggestionsController],
         imports: [
-            mongoose_1.MongooseModule.forFeature([{ name: suggestion_entity_1.Suggestions.name, schema: suggestion_entity_1.SuggestionsSchema }]),
+            mongoose_1.MongooseModule.forFeature([
+                { name: suggestion_entity_1.Suggestions.name, schema: suggestion_entity_1.SuggestionsSchema },
+            ]),
         ],
     })
 ], SuggestionsModule);
