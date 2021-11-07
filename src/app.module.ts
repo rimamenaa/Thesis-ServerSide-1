@@ -21,11 +21,7 @@ import { AuthModule } from './auth/auth.module';
     MongooseModule.forRoot(process.env.MONGO_URI),
     TypeOrmModule.forRoot({
       type: 'mongodb',
-<<<<<<< HEAD
       url: process.env.MONGO_URI,
-=======
-      url: process.env.MongoUrl,
->>>>>>> ef95f8f6caef2ebad30f85e5b305a599c2b943a1
       useNewUrlParser: true,
       synchronize: true,
       logging: true,
