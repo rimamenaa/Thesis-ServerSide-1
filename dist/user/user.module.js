@@ -7,20 +7,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserModule = void 0;
-const common_1 = require("@nestjs/common");
-const user_service_1 = require("./user.service");
-const user_controller_1 = require("./user.controller");
 const mongoose_1 = require("@nestjs/mongoose");
-const user_entity_1 = require("./entities/user.entity");
+const user_schema_1 = require("./schemas/user.schema");
+const common_1 = require("@nestjs/common");
+const user_controller_1 = require("./user.controller");
+const user_service_1 = require("./user.service");
+const auth_module_1 = require("../auth/auth.module");
+const forgot_password_schema_1 = require("./schemas/forgot-password.schema");
 let UserModule = class UserModule {
 };
 UserModule = __decorate([
     (0, common_1.Module)({
-        providers: [user_service_1.UserService],
-        controllers: [user_controller_1.UserController],
         imports: [
-            mongoose_1.MongooseModule.forFeature([{ name: user_entity_1.User.name, schema: user_entity_1.UserSchema }]),
+            mongoose_1.MongooseModule.forFeature([{ name: 'User', schema: user_schema_1.UserSchema }]),
+            mongoose_1.MongooseModule.forFeature([{ name: 'ForgotPassword', schema: forgot_password_schema_1.ForgotPasswordSchema }]),
+            auth_module_1.AuthModule,
         ],
+        controllers: [user_controller_1.UserController],
+        providers: [user_service_1.UserService],
     })
 ], UserModule);
 exports.UserModule = UserModule;

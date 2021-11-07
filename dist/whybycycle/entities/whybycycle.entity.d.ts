@@ -6,4 +6,4 @@ export declare class Whybycycle {
     photo: string;
     createdAt: Date;
 }
-export declare const WhybycycleSchema: import("mongoose").Schema<Document<Whybycycle, any, any>, import("mongoose").Model<Document<Whybycycle, any, any>, any, any>, {}>;
+export declare const WhybycycleSchema: import("mongoose").Schema<Document<Whybycycle, any, any>, import("mongoose").Model<Document<Whybycycle, any, any>, any, any, any>, {}>;
