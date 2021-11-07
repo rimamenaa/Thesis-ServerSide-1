@@ -1,4 +1,3 @@
-
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -9,7 +8,8 @@ import { Suggestions, SuggestionsDocument } from './entities/suggestion.entity';
 @Injectable()
 export class SuggestionsService {
   constructor(
-    @InjectModel(Suggestions.name) private readonly model: Model<SuggestionsDocument>,
+    @InjectModel(Suggestions.name)
+    private readonly model: Model<SuggestionsDocument>,
   ) {}
 
   async findAll(): Promise<Suggestions[]> {
@@ -20,7 +20,9 @@ export class SuggestionsService {
     return await this.model.findById(id).exec();
   }
 
-  async create(createSuggestionsDto: CreateSuggestionsDto): Promise<Suggestions> {
+  async create(
+    createSuggestionsDto: CreateSuggestionsDto,
+  ): Promise<Suggestions> {
     return await new this.model({
       ...createSuggestionsDto,
       createdAt: new Date(),

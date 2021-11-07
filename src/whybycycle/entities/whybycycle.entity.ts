@@ -15,7 +15,7 @@ export class Whybycycle {
   @Prop({ required: true })
   photo: string;
 
-  @Prop({ required: true })
+  @Prop()
   createdAt: Date;
 }
 
