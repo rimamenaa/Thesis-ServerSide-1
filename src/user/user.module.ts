@@ -1,27 +1,18 @@
-/* import { Module } from '@nestjs/common';
-import { UserService } from './user.service';
-import { UserController } from './user.controller';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './entities/user.entity';
-
-@Module({
-  imports: [TypeOrmModule.forFeature([User])],
-  controllers: [UserController],
-  providers: [UserService],
-})
-export class UserModule {} */
-
-import { Module } from '@nestjs/common';
-import { UserService } from './user.service';
-import { UserController } from './user.controller';
 import { MongooseModule } from '@nestjs/mongoose';
-import { User, UserSchema } from './entities/user.entity';
+import { UserSchema } from './schemas/user.schema';
+import { Module } from '@nestjs/common';
+import { UserController } from './user.controller';
+import { UserService } from './user.service';
+import { AuthModule } from 'src/auth/auth.module';
+import { ForgotPasswordSchema } from './schemas/forgot-password.schema';
 
 @Module({
-  providers: [UserService],
-  controllers: [UserController],
   imports: [
-    MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
+    MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
+    MongooseModule.forFeature([{ name: 'ForgotPassword', schema: ForgotPasswordSchema}]),
+    AuthModule,
   ],
+  controllers: [UserController],
+  providers: [UserService],
 })
 export class UserModule {}
