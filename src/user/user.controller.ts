@@ -1,42 +1,86 @@
+import { Roles } from './../auth/decorators/roles.decorator';
+import { ResetPasswordDto } from './dto/reset-password.dto';
+import { CreateForgotPasswordDto } from './dto/create-forgot-password.dto';
+import { Request } from 'express';
+import { LoginUserDto } from './dto/login-user.dto';
 import {
-  Body,
   Controller,
-  Delete,
   Get,
-  Param,
   Post,
-  Put,
+  Body,
+  UseGuards,
+  Req,
+  HttpCode,
+  HttpStatus,
 } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { VerifyUuidDto } from './dto/verify-uuid.dto';
 import { UserService } from './user.service';
+import { AuthGuard, PassportModule } from '@nestjs/passport';
+import { RefreshAccessTokenDto } from './dto/refresh-access-token.dto';
+
+import { RolesGuard } from 'src/auth/guards/roles.guard';
 
 @Controller('user')
+@UseGuards(RolesGuard)
 export class UserController {
-  constructor(private readonly service: UserService) {}
-
-  @Get()
-  async index() {
-    return await this.service.findAll();
-  }
-
-  @Get(':id')
-  async find(@Param('id') id: string) {
-    return await this.service.findOne(id);
-  }
+  constructor(private readonly userService: UserService) {}
 
   @Post()
-  async create(@Body() user: CreateUserDto) {
-    return await this.service.create(user);
+  @HttpCode(HttpStatus.CREATED)
+  async register(@Body() createUserDto: CreateUserDto) {
+    return await this.userService.create(createUserDto);
   }
 
-  @Put(':id')
-  async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return await this.service.update(id, updateUserDto);
+  @Post('verify-email')
+  @HttpCode(HttpStatus.OK)
+  async verifyEmail(@Req() req: Request, @Body() verifyUuidDto: VerifyUuidDto) {
+    return await this.userService.verifyEmail(req, verifyUuidDto);
   }
 
-  @Delete(':id')
-  async delete(@Param('id') id: string) {
-    return await this.service.delete(id);
+  @Post('login')
+  @HttpCode(HttpStatus.OK)
+  async login(@Req() req: Request, @Body() loginUserDto: LoginUserDto) {
+    return await this.userService.login(req, loginUserDto);
+  }
+
+  @Post('refresh-access-token')
+  @HttpCode(HttpStatus.CREATED)
+  async refreshAccessToken(
+    @Body() refreshAccessTokenDto: RefreshAccessTokenDto,
+  ) {
+    return await this.userService.refreshAccessToken(refreshAccessTokenDto);
+  }
+
+  @Post('forgot-password')
+  @HttpCode(HttpStatus.OK)
+  async forgotPassword(
+    @Req() req: Request,
+    @Body() createForgotPasswordDto: CreateForgotPasswordDto,
+  ) {
+    return await this.userService.forgotPassword(req, createForgotPasswordDto);
+  }
+
+  @Post('forgot-password-verify')
+  @HttpCode(HttpStatus.OK)
+  async forgotPasswordVerify(
+    @Req() req: Request,
+    @Body() verifyUuidDto: VerifyUuidDto,
+  ) {
+    return await this.userService.forgotPasswordVerify(req, verifyUuidDto);
+  }
+
+  @Post('reset-password')
+  @HttpCode(HttpStatus.OK)
+  async resetPassword(@Body() resetPasswordDto: ResetPasswordDto) {
+    return await this.userService.resetPassword(resetPasswordDto);
+  }
+
+  @Get('data')
+  @UseGuards(AuthGuard('jwt'))
+  @Roles('admin')
+  @HttpCode(HttpStatus.OK)
+  findAll() {
+    return this.userService.findAll();
   }
 }
