@@ -6,21 +6,14 @@ import {
   IsString,
 } from 'class-validator';
 
-export class CreateUserDto {
-  // fullName
-  @IsNotEmpty()
-  @IsString()
-  @MinLength(5)
-  @MaxLength(255)
-  readonly fullName: string;
-  // Email
+export class LoginUserDto {
   @IsNotEmpty()
   @IsString()
   @MinLength(5)
   @MaxLength(255)
   @IsEmail()
   readonly email: string;
-  // Password
+
   @IsNotEmpty()
   @IsString()
   @MinLength(5)
