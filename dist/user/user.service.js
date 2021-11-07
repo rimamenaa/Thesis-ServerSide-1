@@ -58,7 +58,7 @@ let UserService = class UserService {
             };
         }
         else if (match)
-            return 'Wrong Email of password';
+            return 'Wrong Email of Password';
     }
     async refreshAccessToken(refreshAccessTokenDto) {
         const userId = await this.authService.findRefreshToken(refreshAccessTokenDto.refreshToken);
