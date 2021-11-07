@@ -1,5 +1,4 @@
 import { Schema } from 'mongoose';
-import * as validator from 'validator';
 
 export const ForgotPasswordSchema = new Schema(
   {

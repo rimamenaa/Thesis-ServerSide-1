@@ -13,6 +13,7 @@ export const UserSchema = new mongoose.Schema(
     email: {
       type: String,
       lowercase: true,
+      validate: validator.isEmail,
       maxlength: 255,
       minlength: 6,
       required: [true, 'EMAIL_IS_BLANK'],
@@ -38,6 +39,7 @@ export const UserSchema = new mongoose.Schema(
     },
     verification: {
       type: String,
+      validate: validator.isUUID,
     },
     verified: {
       type: Boolean,
@@ -62,7 +64,7 @@ export const UserSchema = new mongoose.Schema(
   },
 );
 
-UserSchema.pre('save', async function (next) {
+UserSchema.pre('save', async function (next: mongoose.HookNextFunction) {
   try {
     if (!this.isModified('password')) {
       return next();
