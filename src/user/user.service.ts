@@ -62,7 +62,7 @@ export class UserService {
         accessToken: await this.authService.createAccessToken(user._id),
         refreshToken: await this.authService.createRefreshToken(req, user._id),
       };
-    } else if (match) return 'Wrong Email of password';
+    } else if (match) return 'Wrong Email of Password';
   }
 
   async refreshAccessToken(refreshAccessTokenDto: RefreshAccessTokenDto) {
