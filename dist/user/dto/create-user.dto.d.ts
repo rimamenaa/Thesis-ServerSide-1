@@ -1,3 +1,5 @@
-import { BaseUserDto } from './base-user.dto';
-export declare class CreateUserDto extends BaseUserDto {
+export declare class CreateUserDto {
+    readonly fullName: string;
+    readonly email: string;
+    readonly password: string;
 }
