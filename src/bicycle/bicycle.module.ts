@@ -1,13 +1,14 @@
 import { Module } from '@nestjs/common';
 import { BicycleService } from './bicycle.service';
 import { BicycleController } from './bicycle.controller';
-import { Bicycle } from './entities/bicycle.entity';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { MongooseModule } from '@nestjs/mongoose';
+import { Bicycle, BicycleSchema } from './entities/bicycle.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Bicycle])],
-
-  controllers: [BicycleController],
   providers: [BicycleService],
+  controllers: [BicycleController],
+  imports: [
+    MongooseModule.forFeature([{ name: Bicycle.name, schema: BicycleSchema }]),
+  ],
 })
 export class BicycleModule {}

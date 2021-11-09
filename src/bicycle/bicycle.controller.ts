@@ -1,34 +1,45 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { BicycleService } from './bicycle.service';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { CreateBicycleDto } from './dto/create-bicycle.dto';
 import { UpdateBicycleDto } from './dto/update-bicycle.dto';
+import { BicycleService } from './bicycle.service';
 
 @Controller('bicycle')
 export class BicycleController {
-  constructor(private readonly bicycleService: BicycleService) {}
-
-  @Post()
-  create(@Body() createBicycleDto: CreateBicycleDto) {
-    return this.bicycleService.create(createBicycleDto);
-  }
+  constructor(private readonly service: BicycleService) {}
 
   @Get()
-  findAll() {
-    return this.bicycleService.findAll();
+  async index() {
+    return await this.service.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.bicycleService.findOne(+id);
+  async find(@Param('id') id: string) {
+    return await this.service.findOne(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateBicycleDto: UpdateBicycleDto) {
-    return this.bicycleService.update(+id, updateBicycleDto);
+  @Post()
+  async create(@Body() bicycle: CreateBicycleDto) {
+    return await this.service.create(bicycle);
+  }
+
+  @Put(':id')
+  async update(
+    @Param('id') id: string,
+    @Body() updateBicycleDto: UpdateBicycleDto,
+  ) {
+    return await this.service.update(id, updateBicycleDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.bicycleService.remove(+id);
+  async delete(@Param('id') id: string) {
+    return await this.service.delete(id);
   }
 }

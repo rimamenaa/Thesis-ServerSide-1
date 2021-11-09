@@ -1,12 +1,18 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-@Entity()
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
+
+export type BicycleDocument = Bicycle & Document;
+
+@Schema()
 export class Bicycle {
-  @PrimaryGeneratedColumn()
-  id: Number;
-  @Column()
-  name: string;
-  @Column()
-  station: string;
-  @Column()
+  @Prop({ required: false })
+  category: string;
+
+  @Prop({ required: false })
   description: string;
+
+  @Prop({ required: false })
+  photo: string;
 }
+
+export const BicycleSchema = SchemaFactory.createForClass(Bicycle);
