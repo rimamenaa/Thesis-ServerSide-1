@@ -5,17 +5,14 @@ export type BicycleDocument = Bicycle & Document;
 
 @Schema()
 export class Bicycle {
-  @Prop({ required: true })
+  @Prop({ required: false })
   category: string;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   description: string;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   photo: string;
-
-  @Prop({ required: true })
-  createdAt: Date;
 }
 
 export const BicycleSchema = SchemaFactory.createForClass(Bicycle);
