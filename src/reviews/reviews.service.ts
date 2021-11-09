@@ -19,8 +19,8 @@ export class ReviewsService {
     return await this.model.findById(id).exec();
   }
 
-  async create(createReviewsDto: CreateReviewsDto): Promise<Reviews> {
-    return await new this.model({
+   create(createReviewsDto: CreateReviewsDto): Promise<Reviews> {
+    return  new this.model({
       ...createReviewsDto,
       createdAt: new Date(),
     }).save();
