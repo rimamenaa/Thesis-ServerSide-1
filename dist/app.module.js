@@ -12,30 +12,32 @@ const typeorm_1 = require("@nestjs/typeorm");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const user_module_1 = require("./user/user.module");
-const user_entity_1 = require("./user/entities/user.entity");
 const mongoose_1 = require("@nestjs/mongoose");
 const bicycle_module_1 = require("./bicycle/bicycle.module");
+const config_1 = require("@nestjs/config");
 const whybycycle_module_1 = require("./whybycycle/whybycycle.module");
 const admin_module_1 = require("./admin/admin.module");
 const station_module_1 = require("./station/station.module");
 const suggestions_module_1 = require("./suggestions/suggestions.module");
 const reviews_module_1 = require("./reviews/reviews.module");
+const auth_module_1 = require("./auth/auth.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            mongoose_1.MongooseModule.forRoot('mongodb+srv://Wissem:brinis@brinisdatabase.gedvh.mongodb.net/bycycle?retryWrites=true&w=majority'),
+            config_1.ConfigModule.forRoot(),
+            mongoose_1.MongooseModule.forRoot(process.env.MONGO_URI),
             typeorm_1.TypeOrmModule.forRoot({
                 type: 'mongodb',
-                url: process.env.MongoUrl,
+                url: process.env.MONGO_URI,
                 useNewUrlParser: true,
                 synchronize: true,
                 logging: true,
-                entities: [user_entity_1.User],
             }),
             user_module_1.UserModule,
             bicycle_module_1.BicycleModule,
+            auth_module_1.AuthModule,
             whybycycle_module_1.WhybycycleModule,
             admin_module_1.AdminModule,
             station_module_1.StationModule,
