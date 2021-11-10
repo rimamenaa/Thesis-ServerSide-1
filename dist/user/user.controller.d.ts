@@ -16,7 +16,7 @@ export declare class UserController {
         accessToken: string;
         refreshToken: string;
     }>;
-    login(req: Request, loginUserDto: LoginUserDto): Promise<"Wrong Email of Password" | {
+    login(req: Request, loginUserDto: LoginUserDto): Promise<{
         fullName: string;
         email: string;
         accessToken: string;

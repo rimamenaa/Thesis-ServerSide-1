@@ -14,7 +14,7 @@ export class Admin {
   @Prop({ required: true })
   password: string;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   createdAt: Date;
 }
 
