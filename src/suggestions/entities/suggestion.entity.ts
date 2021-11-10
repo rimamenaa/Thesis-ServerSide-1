@@ -3,8 +3,6 @@ import { Document } from 'mongoose';
 
 export type SuggestionsDocument = Suggestions & Document;
 
-
-
 @Schema()
 export class Suggestions {
   @Prop({ required: false })
@@ -17,7 +15,7 @@ export class Suggestions {
   duration: string;
 
   @Prop({ required: false })
-  distance: string;
+  Distance: string;
 
   @Prop({ required: false })
   description: string;
