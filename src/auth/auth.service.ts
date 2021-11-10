@@ -70,9 +70,6 @@ export class AuthService {
     return user;
   }
 
-  //   ┬┬ ┬┌┬┐  ┌─┐─┐ ┬┌┬┐┬─┐┌─┐┌─┐┌┬┐┌─┐┬─┐
-  //   ││││ │   ├┤ ┌┴┬┘ │ ├┬┘├─┤│   │ │ │├┬┘
-  //  └┘└┴┘ ┴   └─┘┴ └─ ┴ ┴└─┴ ┴└─┘ ┴ └─┘┴└─
   private jwtExtractor(request) {
     let token = null;
     if (request.header('x-token')) {
@@ -98,11 +95,6 @@ export class AuthService {
     return token;
   }
 
-  // ***********************
-  // ╔╦╗╔═╗╔╦╗╦ ╦╔═╗╔╦╗╔═╗
-  // ║║║║╣  ║ ╠═╣║ ║ ║║╚═╗
-  // ╩ ╩╚═╝ ╩ ╩ ╩╚═╝═╩╝╚═╝
-  // ***********************
   returnJwtExtractor() {
     return this.jwtExtractor;
   }
