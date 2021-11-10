@@ -6,20 +6,24 @@ export type StationDocument = Station & Document;
 
 @Schema()
 export class Station {
-  @Prop({ required: false })
+  @Prop({ required: true })
   Name: String;
-  @Prop({ required: false })
+  @Prop({ required: true })
   Email: String;
-  @Prop({ required: false })
+  @Prop({ required: true })
   Situation: String;
-  @Prop({ required: false })
+  @Prop({ required: true })
   Incoming: String;
-  @Prop({ required: false })
+  @Prop({ required: true })
   City: String;
-  @Prop({ required: false })
+  @Prop({ required: true })
   Status: String;
-  @Prop({ required: false })
+  @Prop({ required: true })
   BikeCount: String;
+  // @Prop({ required: true })
+  // CreatedAt: Date;
+  // @Prop({ required: true })
+  // UpdatedAt: Date;
 }
 
 export const StationSchema = SchemaFactory.createForClass(Station);
