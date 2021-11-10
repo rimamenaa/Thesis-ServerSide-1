@@ -20,10 +20,8 @@ export class Station {
   Status: String;
   @Prop({ required: true })
   BikeCount: String;
-  // @Prop({ required: true })
-  // CreatedAt: Date;
-  // @Prop({ required: true })
-  // UpdatedAt: Date;
+  @Prop({ required: false })
+  CreatedAt: Date;
 }
 
 export const StationSchema = SchemaFactory.createForClass(Station);
