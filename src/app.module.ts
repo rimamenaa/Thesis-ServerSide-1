@@ -14,6 +14,7 @@ import { StationModule } from './station/station.module';
 import { SuggestionsModule } from './suggestions/suggestions.module';
 import { ReviewsModule } from './reviews/reviews.module';
 import { AuthModule } from './auth/auth.module';
+import { PiModule } from './pi/pi.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { AuthModule } from './auth/auth.module';
     StationModule,
     SuggestionsModule,
     ReviewsModule,
+    PiModule,
   ],
   controllers: [AppController],
   providers: [AppService],
