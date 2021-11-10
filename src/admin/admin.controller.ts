@@ -24,6 +24,7 @@ export class AdminController {
   async find(@Param('id') id: string) {
     return await this.service.findOne(id);
   }
+  
 
   @Post()
   async create(@Body() user: CreateAdminDto) {

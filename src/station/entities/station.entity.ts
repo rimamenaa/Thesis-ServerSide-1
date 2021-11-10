@@ -5,16 +5,16 @@ export type StationDocument = Station & Document;
 
 @Schema()
 export class Station {
-  @Prop({ required: true })
+  @Prop({ required: false })
   location: string;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   numberOfBikes: number;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   address: string;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   contact: string;
 }
 
