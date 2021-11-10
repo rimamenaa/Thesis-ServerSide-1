@@ -21,6 +21,7 @@ const station_module_1 = require("./station/station.module");
 const suggestions_module_1 = require("./suggestions/suggestions.module");
 const reviews_module_1 = require("./reviews/reviews.module");
 const auth_module_1 = require("./auth/auth.module");
+const pi_module_1 = require("./pi/pi.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -43,6 +44,7 @@ AppModule = __decorate([
             station_module_1.StationModule,
             suggestions_module_1.SuggestionsModule,
             reviews_module_1.ReviewsModule,
+            pi_module_1.PiModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
