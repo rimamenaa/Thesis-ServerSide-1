@@ -3,17 +3,17 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
-
 import { MongooseModule } from '@nestjs/mongoose';
 import { BicycleModule } from './bicycle/bicycle.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { WhybycycleModule } from './whybycycle/whybycycle.module';
-
+import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import { AdminModule } from './admin/admin.module';
 import { StationModule } from './station/station.module';
 import { SuggestionsModule } from './suggestions/suggestions.module';
 import { ReviewsModule } from './reviews/reviews.module';
 import { AuthModule } from './auth/auth.module';
+import { PiModule } from './pi/pi.module';
 
 @Module({
   imports: [
@@ -30,11 +30,12 @@ import { AuthModule } from './auth/auth.module';
     BicycleModule,
     AuthModule,
     WhybycycleModule,
-
+    CloudinaryModule,
     AdminModule,
     StationModule,
     SuggestionsModule,
     ReviewsModule,
+    PiModule,
   ],
   controllers: [AppController],
   providers: [AppService],
