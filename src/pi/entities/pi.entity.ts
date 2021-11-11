@@ -1,21 +1,18 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-export type AdminDocument = Admin & Document;
+export type PiDocument = Pi & Document;
 
 @Schema()
-export class Admin {
+export class Pi {
   @Prop({ required: true })
-  username: string;
+  id: string;
 
   @Prop({ required: true })
-  email: string;
+  phoneNumber: string;
 
   @Prop({ required: true })
-  password: string;
-
-  @Prop({ required: false })
   createdAt: Date;
 }
 
-export const AdminSchema = SchemaFactory.createForClass(Admin);
+export const PiSchema = SchemaFactory.createForClass(Pi);

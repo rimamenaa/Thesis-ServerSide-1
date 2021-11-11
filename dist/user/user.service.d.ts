@@ -24,7 +24,7 @@ export declare class UserService {
         accessToken: string;
         refreshToken: string;
     }>;
-    login(req: Request, loginUserDto: LoginUserDto): Promise<"Wrong Email of password" | {
+    login(req: Request, loginUserDto: LoginUserDto): Promise<{
         fullName: string;
         email: string;
         accessToken: string;

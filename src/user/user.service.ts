@@ -7,6 +7,7 @@ import {
   BadRequestException,
   NotFoundException,
   ConflictException,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -55,14 +56,14 @@ export class UserService {
   async login(req: Request, loginUserDto: LoginUserDto) {
     const user = await this.findUserByEmail(loginUserDto.email);
     const match = await bcrypt.compare(loginUserDto.password, user.password);
-    if (!match) {
+    if (match) {
       return {
         fullName: user.fullName,
         email: user.email,
         accessToken: await this.authService.createAccessToken(user._id),
         refreshToken: await this.authService.createRefreshToken(req, user._id),
       };
-    } else if (match) return 'Wrong Email of password';
+    } else if (!match) throw new UnauthorizedException();
   }
 
   async refreshAccessToken(refreshAccessTokenDto: RefreshAccessTokenDto) {

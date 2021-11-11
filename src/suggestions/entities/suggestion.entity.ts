@@ -5,23 +5,20 @@ export type SuggestionsDocument = Suggestions & Document;
 
 @Schema()
 export class Suggestions {
-  @Prop({ required: true })
+  @Prop({ required: false })
   photo: string;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   location: string;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   duration: string;
 
-  @Prop({ required: true })
-  distance: string;
+  @Prop({ required: false })
+  Distance: string;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   description: string;
-
-  @Prop({ required: true })
-  createdAt: Date;
 }
 
 export const SuggestionsSchema = SchemaFactory.createForClass(Suggestions);

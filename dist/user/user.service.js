@@ -49,7 +49,7 @@ let UserService = class UserService {
     async login(req, loginUserDto) {
         const user = await this.findUserByEmail(loginUserDto.email);
         const match = await bcrypt.compare(loginUserDto.password, user.password);
-        if (!match) {
+        if (match) {
             return {
                 fullName: user.fullName,
                 email: user.email,
@@ -57,8 +57,8 @@ let UserService = class UserService {
                 refreshToken: await this.authService.createRefreshToken(req, user._id),
             };
         }
-        else if (match)
-            return 'Wrong Email of password';
+        else if (!match)
+            throw new common_1.UnauthorizedException();
     }
     async refreshAccessToken(refreshAccessTokenDto) {
         const userId = await this.authService.findRefreshToken(refreshAccessTokenDto.refreshToken);

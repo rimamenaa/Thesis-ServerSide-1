@@ -6,10 +6,12 @@ import {
   Param,
   Post,
   Put,
+  UploadedFile,
 } from '@nestjs/common';
 import { CreateStationDto } from './dto/create-station.dto';
 import { UpdateStationDto } from './dto/update-station.dto';
 import { StationService } from './station.service';
+import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 
 @Controller('station')
 export class StationController {
