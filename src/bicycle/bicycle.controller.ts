@@ -6,9 +6,12 @@ import {
   Param,
   Post,
   Put,
+  UploadedFile,
+  UseInterceptors,
 } from '@nestjs/common';
-import { CreateBicycleDto } from './dto/create-bicycle.dto';
-import { UpdateBicycleDto } from './dto/update-bicycle.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { CreateBicycleDto } from '../bicycle/dto/create-bicycle.dto';
+import { UpdateBicycleDto } from '../bicycle/dto/update-bicycle.dto';
 import { BicycleService } from './bicycle.service';
 
 @Controller('bicycle')
@@ -28,6 +31,11 @@ export class BicycleController {
   @Post()
   async create(@Body() bicycle: CreateBicycleDto) {
     return await this.service.create(bicycle);
+  }
+  @Post('upload')
+  @UseInterceptors(FileInterceptor('file'))
+  async upload(@UploadedFile() file: Express.Multer.File) {
+    return await this.service.uploadImage(file);
   }
 
   @Put(':id')
