@@ -16,6 +16,7 @@ const mongoose_1 = require("@nestjs/mongoose");
 const bicycle_module_1 = require("./bicycle/bicycle.module");
 const config_1 = require("@nestjs/config");
 const whybycycle_module_1 = require("./whybycycle/whybycycle.module");
+const cloudinary_module_1 = require("./cloudinary/cloudinary.module");
 const admin_module_1 = require("./admin/admin.module");
 const station_module_1 = require("./station/station.module");
 const suggestions_module_1 = require("./suggestions/suggestions.module");
@@ -40,6 +41,7 @@ AppModule = __decorate([
             bicycle_module_1.BicycleModule,
             auth_module_1.AuthModule,
             whybycycle_module_1.WhybycycleModule,
+            cloudinary_module_1.CloudinaryModule,
             admin_module_1.AdminModule,
             station_module_1.StationModule,
             suggestions_module_1.SuggestionsModule,
