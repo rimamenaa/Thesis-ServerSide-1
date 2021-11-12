@@ -5,13 +5,13 @@ export type ReviewsDocument = Reviews & Document;
 
 @Schema()
 export class Reviews {
-  @Prop({ required: false })
+  @Prop({ required: true })
   place: string;
 
-  @Prop({ required: false })
+  @Prop({ required: true })
   rating: number;
 
-  @Prop({ required: false })
+  @Prop({ required: true })
   review: string;
 
   @Prop({ required: false })
