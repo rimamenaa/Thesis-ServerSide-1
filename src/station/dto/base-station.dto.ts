@@ -6,4 +6,5 @@ export class BaseStationDto {
   City: String;
   Status: String;
   BikeCount: String;
+  createdAt: Date;
 }
