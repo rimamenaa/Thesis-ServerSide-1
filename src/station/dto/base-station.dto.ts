@@ -1,4 +1,5 @@
 export class BaseStationDto {
+
   Name: String;
   Email: String;
   Situation: String;
@@ -7,4 +8,5 @@ export class BaseStationDto {
   Status: String;
   BikeCount: String;
   createdAt: Date;
+  
 }
